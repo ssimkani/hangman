@@ -29,9 +29,9 @@ class Hangman
 
   def player_guess
     print "\n\nGuess a letter: "
-    player_input = gets.chomp
-    unless [*'a'..'z'].include?(player_input.downcase)
-      puts 'Please enter a valid letter.'
+    player_input = gets.chomp.upcase
+    unless [*'A'..'Z'].include?(player_input) && !guesses_tried.include?(player_input)
+      puts 'Please enter a valid letter that you have not guessed before.'
       player_guess
     end
     player_input
