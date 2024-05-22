@@ -11,6 +11,16 @@ class Hangman
     @word = []
   end
 
+  def play
+    until guesses_remaining.zero? || (word == display_correct_guesses && word != [])
+      display
+      check_guess(player_guess)
+    end
+    puts "GAME OVER\n\n\n"
+    puts 'YOU WIN' if word == display_correct_guesses
+    puts 'YOU LOSE' if guesses_remaining.zero?
+  end
+
   def choose_word(text_file)
     File.open text_file do |file|
       file.readlines.sample.chomp
@@ -37,16 +47,6 @@ class Hangman
     player_input
   end
 
-  def play
-    until guesses_remaining.zero? || word == display_correct_guesses
-      display
-      check_guess(player_guess)
-    end
-    puts "GAME OVER\n\n\n"
-    puts 'YOU WIN' if word == display_correct_guesses
-    puts 'YOU LOSE' if guesses_remaining.zero?
-  end
-
   def check_guess(letter)
     if word.include?(letter)
       replace(letter)
@@ -71,3 +71,5 @@ class Hangman
 
   attr_accessor :word
 end
+
+Hangman.new.play
