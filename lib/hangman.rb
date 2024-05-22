@@ -13,6 +13,7 @@ class Hangman
 
   def play
     @word = choose_word('words.txt').split('')
+    display_correct_guesses = word.map { |_| '_ ' }
     until guesses_remaining.zero? || (word == display_correct_guesses)
       display
       check_guess(player_guess)
@@ -29,7 +30,6 @@ class Hangman
   end
 
   def display
-    display_correct_guesses = word.map { |_| '_ ' }
     print '------------------------------------------------------------'
     print "------------------------------------------------------------\n\n\n\n\n\n\n\n\n\n\n"
     print "#{display_correct_guesses.join}\t"
@@ -73,4 +73,5 @@ class Hangman
 
   attr_reader :word
 end
+
 Hangman.new.play
