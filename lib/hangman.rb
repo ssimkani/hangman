@@ -12,11 +12,12 @@ class Hangman
   end
 
   def play
-    until guesses_remaining.zero? || (word == display_correct_guesses && word != [])
+    word = choose_word('words.txt').split('')
+    until guesses_remaining.zero? || (word == display_correct_guesses)
       display
       check_guess(player_guess)
     end
-    puts "GAME OVER\n\n\n"
+    puts "\n\nGAME OVER\n\n"
     puts 'YOU WIN' if word == display_correct_guesses
     puts 'YOU LOSE' if guesses_remaining.zero?
   end
@@ -28,13 +29,14 @@ class Hangman
   end
 
   def display
-    word = choose_word('words.txt').split('')
     display_correct_guesses = word.map { |_| '_ ' }
     print '------------------------------------------------------------'
     print "------------------------------------------------------------\n\n\n\n\n\n\n\n\n\n\n"
     print "#{display_correct_guesses.join}\t"
     print "Wrong Guesses Remaining: #{guesses_remaining}\t Total Guesses: #{total_guesses}\t"
     print "Tried: #{guesses_tried.join('  ')}\n"
+    p display_correct_guesses
+    p word
   end
 
   def player_guess
@@ -71,3 +73,4 @@ class Hangman
 
   attr_accessor :word
 end
+Hangman.new.play
