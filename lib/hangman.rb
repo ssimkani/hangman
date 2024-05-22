@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Hangman
-  attr_accessor :wrong_guesses_remaining, :total_guesses, :wrong_guesses, :correct_guesses, :random_word
+  attr_accessor :wrong_guesses_remaining, :total_guesses, :wrong_guesses, :correct_guesses
 
   def initialize
     @wrong_guesses_remaining = 6
@@ -18,8 +18,8 @@ class Hangman
   end
 
   def display
-    @random_word = choose_random_word('words.txt').split('')
-    correct_guesses = @random_word.map { |_| '_ ' }
+    random_word = choose_random_word('words.txt').split('')
+    correct_guesses = random_word.map { |_| '_ ' }
     print '------------------------------------------------------------'
     print "------------------------------------------------------------\n\n\n\n\n\n\n\n\n\n\n"
     print "#{correct_guesses.join}\t"
@@ -36,4 +36,8 @@ class Hangman
     end
     player_input
   end
+
+  private
+
+  attr_accessor :random_word
 end
