@@ -1,11 +1,17 @@
 # frozen_string_literal: true
 
 class Hangman
-  def initialize; end
-end
+  attr_accessor :guesses_remaining, :wrong_guesses, :correct_guesses
 
-def choose_random_word(text_file)
-  File.open text_file do |file|
-    file.readlines.sample.chomp
+  def initialize
+    @guesses_remaining = 6
+    @wrong_guesses = []
+    @correct_guesses = []
+  end
+
+  def choose_random_word(text_file)
+    File.open text_file do |file|
+      file.readlines.sample.chomp
+    end
   end
 end
