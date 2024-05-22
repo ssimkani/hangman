@@ -16,4 +16,14 @@ class Hangman
       file.readlines.sample.chomp
     end
   end
+
+  def player_guess
+    print 'Guess a letter: '
+    player_input = gets.chomp
+    unless [*'a'..'z'].include?(player_input.downcase)
+      puts 'Please enter a valid letter.'
+      player_guess
+    end
+    player_input
+  end
 end
