@@ -1,30 +1,30 @@
 # frozen_string_literal: true
 
 class Hangman
-  attr_accessor :wrong_guesses_remaining, :total_guesses, :wrong_guesses, :correct_guesses
+  attr_accessor :guesses_remaining, :total_guesses, :guesses_tried, :display_correct_guesses
 
   def initialize
-    @wrong_guesses_remaining = 6
+    @guesses_remaining = 6
     @total_guesses = 0
-    @wrong_guesses = []
-    @correct_guesses = []
-    @random_word = []
+    @guesses_tried = []
+    @display_correct_guesses = []
+    @word = []
   end
 
-  def choose_random_word(text_file)
+  def choose_word(text_file)
     File.open text_file do |file|
       file.readlines.sample.chomp
     end
   end
 
   def display
-    random_word = choose_random_word('words.txt').split('')
-    correct_guesses = random_word.map { |_| '_ ' }
+    word = choose_word('words.txt').split('')
+    display_correct_guesses = word.map { |_| '_ ' }
     print '------------------------------------------------------------'
     print "------------------------------------------------------------\n\n\n\n\n\n\n\n\n\n\n"
-    print "#{correct_guesses.join}\t"
-    print "Wrong Guesses Remaining: #{wrong_guesses_remaining}\t Total Guesses: #{total_guesses}\t"
-    print "Tried: #{wrong_guesses.join(', ')}\n"
+    print "#{display_correct_guesses.join}\t"
+    print "Wrong Guesses Remaining: #{guesses_remaining}\t Total Guesses: #{total_guesses}\t"
+    print "Tried: #{guesses_tried.join('  ')}\n"
   end
 
   def player_guess
@@ -37,7 +37,16 @@ class Hangman
     player_input
   end
 
+  def replace(letter)
+    arr = []
+    word.each_with_index { |char, index| arr << index if char == letter }
+    arr.each { |index| display_correct_guesses[index] = letter }
+    @total_guesses += 1
+    guesses_tried << letter.upcase
+    display_correct_guesses
+  end
+
   private
 
-  attr_accessor :random_word
+  attr_accessor :word
 end
