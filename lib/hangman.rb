@@ -12,7 +12,7 @@ class Hangman
   end
 
   def play
-    word = choose_word('words.txt').split('')
+    @word = choose_word('words.txt').split('')
     until guesses_remaining.zero? || (word == display_correct_guesses)
       display
       check_guess(player_guess)
@@ -71,6 +71,6 @@ class Hangman
 
   private
 
-  attr_accessor :word
+  attr_reader :word
 end
 Hangman.new.play
