@@ -4,7 +4,8 @@ class Hangman
   attr_accessor :guesses_remaining, :wrong_guesses, :correct_guesses
 
   def initialize
-    @guesses_remaining = 6
+    @wrong_guesses_remaining = 6
+    @total_guesses = 0
     @wrong_guesses = []
     @correct_guesses = []
     @random_word = []
