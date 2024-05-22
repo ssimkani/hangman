@@ -7,6 +7,7 @@ class Hangman
     @guesses_remaining = 6
     @wrong_guesses = []
     @correct_guesses = []
+    @random_word = []
   end
 
   def choose_random_word(text_file)
