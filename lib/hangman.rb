@@ -23,7 +23,7 @@ class Hangman
 
   def choose_word(text_file)
     File.open text_file do |file|
-      file.readlines.sample.chomp
+      file.readlines.sample.chomp.upcase
     end
   end
 
@@ -53,7 +53,7 @@ class Hangman
     else
       @guesses_remaining -= 1
       @total_guesses += 1
-      guesses_tried << letter.upcase
+      guesses_tried << letter
       puts "Sorry, #{letter} is not in the word."
     end
   end
@@ -71,5 +71,3 @@ class Hangman
 
   attr_accessor :word
 end
-
-Hangman.new.play
