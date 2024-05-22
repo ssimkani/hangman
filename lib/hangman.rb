@@ -44,6 +44,7 @@ class Hangman
       @guesses_remaining -= 1
       @total_guesses += 1
       guesses_tried << letter.upcase
+      puts "Sorry, #{letter} is not in the word."
     end
   end
 
