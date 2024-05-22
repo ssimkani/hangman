@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Hangman
-  attr_accessor :guesses_remaining, :wrong_guesses, :correct_guesses
+  attr_accessor :wrong_guesses_remaining, :total_guesses, :wrong_guesses, :correct_guesses
 
   def initialize
     @wrong_guesses_remaining = 6
