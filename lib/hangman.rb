@@ -37,6 +37,16 @@ class Hangman
     player_input
   end
 
+  def check_guess(letter)
+    if word.include?(letter)
+      replace(letter)
+    else
+      @guesses_remaining -= 1
+      @total_guesses += 1
+      guesses_tried << letter.upcase
+    end
+  end
+
   def replace(letter)
     arr = []
     word.each_with_index { |char, index| arr << index if char == letter }
