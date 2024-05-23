@@ -4,6 +4,10 @@ require 'yaml'
 require_relative 'hangman'
 
 class Game
+  def initialize
+    @hangman = Hangman.new
+  end
+
   def welcome_message
     puts 'WELCOME TO HANGMAN'
     begin
@@ -27,24 +31,17 @@ class Game
         raise StandardError
       end
     rescue StandardError
-      puts "Invalid input. Please try again.\n\n"
+      puts 'Please enter 1, 2, or 0.'
       retry
     end
   end
 
   def play_game
     loop do
-      Hangman.new.play
+      @hangman.play
       print 'Enter 1 to play again or 0 to exit:  '
       input = gets.chomp
       break unless input == '1'
-    end
-  end
-
-  def to_yaml(object, num = 1)
-    yaml_string = object.to_yaml
-    File.open("saved_games/save_#{num}.yml", 'w') do |file|
-      file.write(yaml_string)
     end
   end
 
@@ -52,7 +49,7 @@ class Game
     File.open("saved_games/save_#{num}.yml", 'r') do |file|
       yaml_string = file.read
       object = YAML.safe_load(yaml_string)
-      object
+      object.play
     end
   end
 end
