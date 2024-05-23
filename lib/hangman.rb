@@ -103,9 +103,9 @@ class Hangman
     print '------------------------------------------------------------'
     print "------------------------------------------------------------\n\n"
     puts display_hangman
-    print "Word:\t#{display_correct_guesses.join(' ')}\t\t"
-    print "Wrong Guesses Remaining: #{guesses_remaining}\t Total Guesses: #{total_guesses}\t"
-    print "Tried: #{guesses_tried.join('  ')}\n"
+    print "Word:\t#{display_correct_guesses.join(' ')}\t"
+    print "Total Guesses: #{total_guesses}\t"
+    print "Guesses Tried: #{guesses_tried.join('  ')}\n"
     return if guesses_remaining.zero? || (word == display_correct_guesses)
 
     if check_guess(player_guess).nil?
