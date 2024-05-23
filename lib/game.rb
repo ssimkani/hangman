@@ -14,6 +14,13 @@ class Game
       break unless input == '1'
     end
   end
+
+  def to_yaml(object)
+    yaml_string = object.to_yaml
+    File.open('../save.yml', 'w') do |file|
+      file.write(yaml_string)
+    end
+  end
 end
 
 Game.new.play_game
