@@ -32,12 +32,10 @@ class Hangman
 
   def display
     print '------------------------------------------------------------'
-    print "------------------------------------------------------------\n\n\n\n\n\n\n\n\n\n\n"
+    print "------------------------------------------------------------\n\n\n\n\n"
     print "Word:\t#{display_correct_guesses.join(' ')}\t\t"
     print "Wrong Guesses Remaining: #{guesses_remaining}\t Total Guesses: #{total_guesses}\t"
     print "Tried: #{guesses_tried.join('  ')}\n"
-    p display_correct_guesses
-    p word
     return if guesses_remaining.zero? || (word == display_correct_guesses)
 
     if check_guess(player_guess).nil?
