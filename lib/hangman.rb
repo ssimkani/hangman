@@ -2,11 +2,10 @@
 
 require_relative 'game'
 
-class Hangman < Game
+class Hangman
   attr_accessor :guesses_remaining, :total_guesses, :guesses_tried, :display_correct_guesses, :player_input
 
   def initialize
-    super
     @guesses_remaining = 6
     @total_guesses = 0
     @guesses_tried = []
@@ -160,6 +159,13 @@ class Hangman < Game
     @total_guesses += 1
     guesses_tried << letter.upcase
     display_correct_guesses
+  end
+
+  def to_yaml(object, num)
+    yaml_string = object.to_yaml
+    File.open("saved_games/save_#{num}.yml", 'w') do |file|
+      file.write(yaml_string)
+    end
   end
 
   attr_reader :word
