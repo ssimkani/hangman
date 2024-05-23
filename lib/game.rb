@@ -15,12 +15,12 @@ class Game
     end
   end
 
-  def to_yaml(object)
+  def to_yaml(object, counter)
     yaml_string = object.to_yaml
-    File.open('../save.yml', 'w') do |file|
+    File.open("saved_games/save_#{counter}.yml", 'w') do |file|
       file.write(yaml_string)
     end
   end
 end
 
-Game.new.play_game
+Game.new.play
