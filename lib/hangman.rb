@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'game'
-
 class Hangman
   attr_accessor :guesses_remaining, :total_guesses, :guesses_tried, :display_correct_guesses, :player_input
 
@@ -141,7 +139,7 @@ class Hangman
     if word.include?(letter)
       replace(letter)
     elsif letter == '2'
-      to_yaml(self, @number_of_saved_games + 1)
+      save_game(self, @number_of_saved_games + 1)
       @number_of_saved_games += 1
       puts "Game successfully saved.\n\n"
     else
@@ -161,7 +159,7 @@ class Hangman
     display_correct_guesses
   end
 
-  def to_yaml(object, num)
+  def save_game(object, num)
     yaml_string = object.to_yaml
     File.open("saved_games/save_#{num}.yml", 'w') do |file|
       file.write(yaml_string)
