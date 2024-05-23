@@ -13,7 +13,7 @@ class Hangman
   end
 
   def play
-    initialize
+    initialize # this ensures that the game is re-initialized every time the play method is called
     @word = choose_word('words.txt').split('') until word.length >= 5
     @display_correct_guesses = word.map { |_| '_' }
     display until guesses_remaining.zero? || (word == display_correct_guesses)
