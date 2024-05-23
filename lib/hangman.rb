@@ -12,14 +12,13 @@ class Hangman
   end
 
   def play
-    @word = choose_word('words.txt').split('')
-    choose_word('words.txt') if word.length < 5
-
+    @word = choose_word('words.txt').split('') until word.length >= 5
     @display_correct_guesses = word.map { |_| '_' }
     until guesses_remaining.zero? || (word == display_correct_guesses)
       display
       check_guess(player_guess)
     end
+    display
     puts "\n\nGAME OVER\n"
     puts 'YOU WIN' if word == display_correct_guesses
     puts 'YOU LOSE' if guesses_remaining.zero?
