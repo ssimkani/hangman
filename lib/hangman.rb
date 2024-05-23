@@ -87,5 +87,3 @@ class Hangman
 
   attr_reader :word
 end
-
-Hangman.new.play
