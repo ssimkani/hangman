@@ -30,9 +30,79 @@ class Hangman
     end
   end
 
+  def display_hangman
+    stages = [
+      '
+     --------
+     |      |
+     |      O
+     |     \|/
+     |      |
+     |     / \
+     -
+  ',
+      '
+     --------
+     |      |
+     |      O
+     |     \|/
+     |      |
+     |     /
+     -
+  ',
+      '
+     --------
+     |      |
+     |      O
+     |     \|/
+     |      |
+     |
+     -
+  ',
+      '
+     --------
+     |      |
+     |      O
+     |     \|
+     |      |
+     |
+     -
+  ',
+      '
+     --------
+     |      |
+     |      O
+     |      |
+     |      |
+     |
+     -
+  ',
+      '
+     --------
+     |      |
+     |      O
+     |
+     |
+     |
+     -
+  ',
+      '
+     --------
+     |      |
+     |
+     |
+     |
+     |
+     -
+  '
+    ]
+    stages[guesses_remaining]
+  end
+
   def display
     print '------------------------------------------------------------'
-    print "------------------------------------------------------------\n\n\n\n\n"
+    print "------------------------------------------------------------\n\n"
+    puts display_hangman
     print "Word:\t#{display_correct_guesses.join(' ')}\t\t"
     print "Wrong Guesses Remaining: #{guesses_remaining}\t Total Guesses: #{total_guesses}\t"
     print "Tried: #{guesses_tried.join('  ')}\n"
