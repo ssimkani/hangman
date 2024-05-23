@@ -1,15 +1,19 @@
 # frozen_string_literal: true
 
-class Hangman
+require_relative 'game'
+
+class Hangman < Game
   attr_accessor :guesses_remaining, :total_guesses, :guesses_tried, :display_correct_guesses, :player_input
 
   def initialize
+    super
     @guesses_remaining = 6
     @total_guesses = 0
     @guesses_tried = []
     @display_correct_guesses = []
     @word = []
     @player_input = nil
+    @number_of_saved_games = 0
   end
 
   def play
@@ -137,6 +141,9 @@ class Hangman
   def check_guess(letter)
     if word.include?(letter)
       replace(letter)
+    elsif letter == '2'
+      to_yaml(self, @number_of_saved_games + 1)
+      @number_of_saved_games += 1
     else
       @guesses_remaining -= 1
       @total_guesses += 1
