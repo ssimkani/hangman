@@ -16,6 +16,7 @@ class Hangman
     @word = choose_word('words.txt').split('') until word.length >= 5
     @display_correct_guesses = word.map { |_| '_' }
     display until guesses_remaining.zero? || (word == display_correct_guesses)
+    display
     puts "\n\nGAME OVER"
     puts 'YOU WIN' if word == display_correct_guesses
     puts 'YOU LOSE' if guesses_remaining.zero?
@@ -35,6 +36,8 @@ class Hangman
     print "Tried: #{guesses_tried.join('  ')}\n"
     p display_correct_guesses
     p word
+    return if guesses_remaining.zero? || (word == display_correct_guesses)
+
     if check_guess(player_guess).nil?
       print "Sorry, '#{player_input}' is not in the word.\n"
     else
