@@ -19,12 +19,13 @@ class Hangman
     display
     puts "\n\nGAME OVER"
     puts 'YOU WIN' if word == display_correct_guesses
-    puts 'YOU LOSE' if guesses_remaining.zero?
-  end
-
-  def choose_word(text_file)
-    File.open text_file do |file|
-      file.readlines.sample.chomp.upcase
+    puts "YOU LOSE\nThe word was: #{word.join}" if guesses_remaining.zero?
+    puts 'Enter 1 to play again or 0 to exit'
+    input = gets.chomp
+    if input == '1'
+      play
+    else
+      exit
     end
   end
 
@@ -42,6 +43,14 @@ class Hangman
       print "Sorry, '#{player_input}' is not in the word.\n"
     else
       print "'#{player_input}' is in the word!\n"
+    end
+  end
+
+  protected
+
+  def choose_word(text_file)
+    File.open text_file do |file|
+      file.readlines.sample.chomp.upcase
     end
   end
 
@@ -75,8 +84,6 @@ class Hangman
     guesses_tried << letter.upcase
     display_correct_guesses
   end
-
-  private
 
   attr_reader :word
 end
