@@ -1,9 +1,14 @@
+require 'yaml'
 require_relative 'hangman'
 
 class Game
+  def initialize
+    @object = Hangman.new
+  end
+
   def play_game
     loop do
-      Hangman.new.play
+      @object.play
       puts 'Enter 1 to play again or 0 to exit'
       input = gets.chomp
       break unless input == '1'
