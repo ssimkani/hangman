@@ -144,6 +144,7 @@ class Hangman < Game
     elsif letter == '2'
       to_yaml(self, @number_of_saved_games + 1)
       @number_of_saved_games += 1
+      puts "Game successfully saved.\n\n"
     else
       @guesses_remaining -= 1
       @total_guesses += 1
