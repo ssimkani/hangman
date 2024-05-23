@@ -21,6 +21,14 @@ class Game
       file.write(yaml_string)
     end
   end
+
+  def load_game(counter)
+    File.open("saved_games/save_#{counter}.yml", 'r') do |file|
+      yaml_string = file.read
+      object = YAML.safe_load(yaml_string)
+      object
+    end
+  end
 end
 
 Game.new.play
