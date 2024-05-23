@@ -1,11 +1,9 @@
+# frozen_string_literal: true
+
 require 'yaml'
 require_relative 'hangman'
 
 class Game
-  def initialize
-    @object = Hangman.new
-  end
-
   def welcome_message
     puts 'WELCOME TO HANGMAN'
     begin
@@ -36,14 +34,14 @@ class Game
 
   def play_game
     loop do
-      @object.play
+      Hangman.new.play
       print 'Enter 1 to play again or 0 to exit:  '
       input = gets.chomp
       break unless input == '1'
     end
   end
 
-  def to_yaml(object, num)
+  def to_yaml(object, num = 1)
     yaml_string = object.to_yaml
     File.open("saved_games/save_#{num}.yml", 'w') do |file|
       file.write(yaml_string)
