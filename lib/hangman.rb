@@ -13,6 +13,7 @@ class Hangman
   end
 
   def play
+    initialize
     @word = choose_word('words.txt').split('') until word.length >= 5
     @display_correct_guesses = word.map { |_| '_' }
     display until guesses_remaining.zero? || (word == display_correct_guesses)
