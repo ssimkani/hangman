@@ -19,13 +19,6 @@ class Hangman
     puts "\n\nGAME OVER"
     puts 'YOU WIN' if word == display_correct_guesses
     puts "YOU LOSE\nThe word was: #{word.join}" if guesses_remaining.zero?
-    puts 'Enter 1 to play again or 0 to exit'
-    input = gets.chomp
-    if input == '1'
-      play
-    else
-      exit
-    end
   end
 
   def display_hangman
@@ -136,8 +129,8 @@ class Hangman
     if word.include?(letter)
       replace(letter)
     elsif letter == '2'
-      save_game(self, @number_of_saved_games + 1)
       @number_of_saved_games += 1
+      save_game(self, @number_of_saved_games)
       puts "Game successfully saved.\n\n"
       exit
     else
