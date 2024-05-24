@@ -7,16 +7,14 @@ class Hangman
     @guesses_remaining = 6
     @total_guesses = 0
     @guesses_tried = []
-    @display_correct_guesses = []
-    @word = []
+    @word = choose_word('words.txt').split('')
+    @display_correct_guesses = @word.map { |_| '_' }
     @player_input = nil
     @number_of_saved_games = 0
   end
 
   def play
-    initialize # this ensures that the game is re-initialized every time the play method is called
-    @word = choose_word('words.txt').split('') until word.length >= 5
-    @display_correct_guesses = word.map { |_| '_' }
+    # this ensures that the game is re-initialized every time the play method is called
     display until guesses_remaining.zero? || (word == display_correct_guesses)
     display
     puts "\n\nGAME OVER"
@@ -142,6 +140,7 @@ class Hangman
       save_game(self, @number_of_saved_games + 1)
       @number_of_saved_games += 1
       puts "Game successfully saved.\n\n"
+      exit
     else
       @guesses_remaining -= 1
       @total_guesses += 1
