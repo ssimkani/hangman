@@ -58,5 +58,3 @@ class Game
     end
   end
 end
-
-Game.new.welcome_message
