@@ -28,7 +28,7 @@ class Game
           puts 'No saved games found.'
           exit
         else
-          files.each { |f| puts f }
+          files.sort.each { |f| puts f }
         end
       end
       load_game(gets.chomp)
