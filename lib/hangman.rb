@@ -10,11 +10,10 @@ class Hangman
     @word = choose_word('words.txt').split('')
     @display_correct_guesses = @word.map { |_| '_' }
     @player_input = nil
-    @number_of_saved_games = 0
+    @number_of_saved_games = Dir.open('saved_games').count - 2
   end
 
   def play
-    # this ensures that the game is re-initialized every time the play method is called
     display until guesses_remaining.zero? || (word == display_correct_guesses)
     display
     puts "\n\nGAME OVER"
