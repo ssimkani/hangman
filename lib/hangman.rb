@@ -12,7 +12,7 @@ class Hangman
     @word = choose_word('words.txt').split('')
     @display_correct_guesses = @word.map { |_| '_' }
     @player_input = nil
-    @number_of_saved_games = Dir.open('saved_games').count - 2
+    @number_of_saved_games = Dir.open('saved_games').count - 3
   end
 
   def play
