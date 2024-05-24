@@ -39,14 +39,22 @@ class Game
   end
 
   def play_game
-    @hangman.play
+    loop do
+      @hangman.play
+      puts "\n\nEnter 1 to play again or 0 to exit:"
+      input = gets.chomp
+      break unless input == '1'
+
+      initialize
+      @hangman.play
+    end
   end
 
   def load_game(num)
     File.open("saved_games/save_#{num}.yml", 'r') do |file|
       yaml_string = file.read
-      object = YAML.safe_load(yaml_string, permitted_classes: [Hangman])
-      object.play
+      @hangman = YAML.safe_load(yaml_string, permitted_classes: [Hangman])
+      play_game
     end
   end
 end
