@@ -28,7 +28,7 @@ class Game
       files = []
       puts "Enter the number of the saved game you would like to load:\n\n"
       Dir.open('saved_games') do |dir|
-        dir.each_child { |file| files << file }
+        dir.each_child { |file| files << file if file.end_with?('yml') }
         if files.empty?
           puts 'No saved games found.'
           exit
